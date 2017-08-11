@@ -1,0 +1,16 @@
+{
+  "name": "psadminio-io_weblogic",
+  "version": "0.1.0",
+  "author": "Eric Bolinger",
+  "summary": "Configure various settings for WebLogic running PeopleSoft to complement the DPK",
+  "license": "Apache 2.0",
+  "source": "https://github.com/psadmin-io/psadminio-io_weblogic",
+  "project_page": "https://github.com/psadmin-io/psadminio-io_weblogic",
+  "issues_url": "https://github.com/psadmin-io/psadminio-io_weblogic",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-inifile","version_requirement":">= 1.5.0"},
+    {"name":"puppetlabs-java_ks","version_requirement":">= 1.4.1"}
+  ]
+}
+

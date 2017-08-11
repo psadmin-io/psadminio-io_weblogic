@@ -1,0 +1,6 @@
+rvm: 2.0.0
+notifications:
+  email:
+    - contact@ericbisme.net
+env:
+  - PUPPET_VERSION=3.8.7

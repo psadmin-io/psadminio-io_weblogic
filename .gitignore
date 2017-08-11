@@ -1,0 +1,4 @@
+spec/fixtures/manifests/
+spec/fixtures/modules/
+.vagrant
+.bundle
