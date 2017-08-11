@@ -28,8 +28,8 @@ Modules from the Puppet Forge may be dependencies for this module as defined in 
 Being able to use Forge modules in your environment is likely to be required.
 
 For an introduction to Puppet Check out these resources
-* (https://learn.puppet.com/category/self-paced-training "Puppet Self-paced Training" ) 
-* (https://puppet.com/download-learning-vm "Puppet Learning VM")
+* [Puppet Self-paced Training](https://learn.puppet.com/category/self-paced-training)
+* [Puppet Learning VM](https://puppet.com/download-learning-vm)
 
 ## Setup
 
