@@ -2,4 +2,5 @@ fixtures:
   repositories:
     stdlib:  "git://github.com/puppetlabs/puppetlabs-stdlib"
     inifile: "https://github.com/puppetlabs/puppetlabs-inifile"
+    java_ks: "https://github.com/puppetlabs/puppetlabs-java_ks"
 

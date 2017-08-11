@@ -35,7 +35,8 @@ For an introduction to Puppet Check out these resources
 
 ### What io_weblogic affects
 
-* WebLogic Domain setEnv.sh, JAVA_OPTIONS_${platform} subsettings
+* WebLogic PeopleSoft Domain setEnv.sh, JAVA_OPTIONS_${platform} subsettings
+* WebLogic Peoplesoft Domain pskey file delivered with Peoplesoft
 
 ### Setup Requirements
 
@@ -71,6 +72,7 @@ the fancy stuff with your module here.
 
 * Classes
     * java_options.pp
+    * pskey.pp
 
 ## Limitations
 
