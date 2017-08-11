@@ -10,25 +10,25 @@ class io_weblogic::java_options (
   case $::facts['os']['name'] {
     'AIX':     {
       $platform = 'AIX'
-      $script   = 'setEnv.sh'
     }
     'Solaris': {
       $platform = 'SOLARIS'
-      $script   = 'setEnv.sh'
     }
     'windows': {
       $platform = 'WIN'
       $script   = 'setEnv.cmd'
+      $path     = "${ps_config_home}\\webserv\\${pia_domain_name}\\bin\\"
     }
     default:   {
       $platform = 'LINUX'
       $script   = 'setEnv.sh'
+      $path     = "${ps_config_home}/webserv/${pia_domain_name}/bin/"
     }
   }
 
   Ini_Subsetting {
     ensure               => $ensure,
-    path                 => "${ps_config_home}/webserv/${pia_domain_name}/bin/${script}",
+    path                 => "${path}${script}",
     setting              => "JAVA_OPTIONS_${platform}",
     subsetting_separator => ' -',
     section              => '',
