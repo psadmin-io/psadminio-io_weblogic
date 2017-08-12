@@ -3,8 +3,7 @@ require 'spec_helper'
 describe('io_weblogic::java_options', :type => :class) do
   let(:default_params) do
     {
-      :pia_domain_name => 'hcmdmo',
-      :settings        => {'Xmx' => '1024m' },
+      :settings        => { :hcmdmo => {'Xmx' => '1024m'} },
     }
   end
 
@@ -13,7 +12,7 @@ describe('io_weblogic::java_options', :type => :class) do
 
     let :params do
       default_params.merge({
-        :ps_config_home  => '/tmp/ps_cfg_home/hcmdmo',
+        :pia_domain_list => { :hcmdmo => {'ps_cfg_home_dir' => '/tmp/ps_cfg_home/hcmdmo'} },
       })
     end
 
@@ -35,13 +34,13 @@ describe('io_weblogic::java_options', :type => :class) do
 
     let :params do
       default_params.merge({
-        :ps_config_home => 'C:\temp\ps_cfg_home\hcmdmo',
+        :pia_domain_list => { :hcmdmo => {'ps_cfg_home_dir' => 'C:/temp/ps_cfg_home/hcmdmo'} },
       })
     end
 
     it { is_expected.to contain_ini_subsetting("hcmdmo WLS JAVA_OPTIONS_WIN, Xmx, 1024m")
       .with({
-        'path'                 => 'C:\\temp\\ps_cfg_home\\hcmdmo\\webserv\\hcmdmo\\bin\\setEnv.cmd',
+        'path'                 => 'C:/temp/ps_cfg_home/hcmdmo/webserv/hcmdmo/bin/setEnv.cmd',
         'setting'              => 'JAVA_OPTIONS_WIN',
         'subsetting_separator' => ' -',
         'subsetting'           => 'Xmx',
