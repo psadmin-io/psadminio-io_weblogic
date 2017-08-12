@@ -3,7 +3,7 @@ class io_weblogic::pskey (
   $java_home       = hiera('jdk_location'),
   $password        = 'password', # This is the default as delivered, you should pass a new one from hiera
   $certificates    = undef,
-  $trustcacerts    = false,
+  $trustcacerts    = true,
 ){
 
   validate_hash($certificates)
