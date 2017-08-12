@@ -1,7 +1,6 @@
 class io_weblogic::java_options (
   $ensure          = hiera('ensure', 'present'),
-  $ps_config_home  = hiera('ps_config_home'),
-  $pia_domain_name = hiera('pia_domain_name'),
+  $pia_domain_list = hiera_hash('pia_domain_list'),
   $settings        = undef,
 ){
 
@@ -17,27 +16,30 @@ class io_weblogic::java_options (
     'windows': {
       $platform = 'WIN'
       $script   = 'setEnv.cmd'
-      $path     = "${ps_config_home}\\webserv\\${pia_domain_name}\\bin\\"
     }
     default:   {
       $platform = 'LINUX'
       $script   = 'setEnv.sh'
-      $path     = "${ps_config_home}/webserv/${pia_domain_name}/bin/"
     }
   }
 
-  Ini_Subsetting {
-    ensure               => $ensure,
-    path                 => "${path}${script}",
-    setting              => "JAVA_OPTIONS_${platform}",
-    subsetting_separator => ' -',
-    section              => '',
-  }
+  $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
-  $settings.each | $subset, $val | {
-    ini_subsetting { "${pia_domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
-      subsetting => $subset,
-      value      => $val,
+    $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
+
+    Ini_Subsetting {
+      ensure               => $ensure,
+      path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${script}",
+      setting              => "JAVA_OPTIONS_${platform}",
+      subsetting_separator => ' -',
+      section              => '',
+    }
+
+    $settings["${domain_name}"].each | $subset, $val | {
+      ini_subsetting { "${domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
+        subsetting => $subset,
+        value      => $val,
+      }
     }
   }
 }

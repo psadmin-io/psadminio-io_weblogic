@@ -66,10 +66,11 @@ the fancy stuff with your module here.
 Hiera Example:
 ```yaml
 io_weblogic::java_options::settings:
-  Xms:                              '1024m'
-  Xmx:                              '1024m'
-  Dweblogic.threadpool.MinPoolSize: '=100'
-  Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
+  iepdmo:
+    Xms:                              '1024m'
+    Xmx:                              '1024m'
+    Dweblogic.threadpool.MinPoolSize: '=100'
+    Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
 ```
 
 ### io_weblogic::pskey
