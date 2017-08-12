@@ -54,6 +54,15 @@ Data for the module will be pulled from Hiera. Depending on your setup, you may 
 to create an additional profile to encapsulate the classes you want to use from this
 module.
 
+
+## Usage
+
+Put the classes, types, and resources for customizing, configuring, and doing
+the fancy stuff with your module here.
+
+## Reference
+
+### io_weblogic::java_options
 Hiera Example:
 ```yaml
 io_weblogic::java_options::settings:
@@ -63,16 +72,20 @@ io_weblogic::java_options::settings:
   Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
 ```
 
-## Usage
-
-Put the classes, types, and resources for customizing, configuring, and doing
-the fancy stuff with your module here.
-
-## Reference
-
-* Classes
-    * java_options.pp
-    * pskey.pp
+### io_weblogic::pskey
+Hiera Example:
+```yaml
+io_weblogic::pskey::certificates:
+  iepdmo:
+    demo_key:
+      certificate: /tmp/cert.pem
+      private_key: /tmp/key.pem
+    demo_key2:
+      certificate: /tmp/cert2.pem
+      private_key: /tmp/key2.pem
+    demo_key3:
+      certificate: /tmp/cert3.pem
+```
 
 ## Limitations
 
