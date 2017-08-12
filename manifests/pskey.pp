@@ -1,5 +1,5 @@
 class io_weblogic::pskey (
-  $pia_domain_list = hiera('pia_domain_list'),
+  $pia_domain_list = hiera_hash('pia_domain_list'),
   $java_home       = hiera('jdk_location'),
   $password        = 'password', # This is the default as delivered, you should pass a new one from hiera
   $certificates    = undef,
