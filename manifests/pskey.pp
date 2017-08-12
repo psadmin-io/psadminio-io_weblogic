@@ -6,6 +6,8 @@ class io_weblogic::pskey (
   $trustcacerts    = false,
 ){
 
+  validate_hash($certificates)
+
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
