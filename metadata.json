@@ -7,6 +7,7 @@
   "source": "https://github.com/psadmin-io/psadminio-io_weblogic",
   "project_page": "https://github.com/psadmin-io/psadminio-io_weblogic",
   "issues_url": "https://github.com/psadmin-io/psadminio-io_weblogic",
+  "tags": ["PeopleSoft", "PeopleTools", "DPK", "psadmin.io"],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"puppetlabs-inifile","version_requirement":">= 1.5.0"},
