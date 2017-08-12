@@ -1,35 +1,38 @@
 class io_weblogic::pskey (
-  $ps_config_home  = hiera('ps_config_home'),
-  $pia_domain_name = hiera('pia_domain_name'),
-  $password        = 'password', # This is the default as delivered, if you add a private cert change it.
-  $keys            = undef,
+  $pia_domain_list = hiera('pia_domain_list'),
   $java_home       = hiera('jdk_location'),
-  $trustcacerts    = true,
+  $password        = 'password', # This is the default as delivered, you should pass a new one from hiera
+  $certificates    = undef,
+  $trustcacerts    = false,
 ){
 
-  $pskey_location = "${ps_config_home}/webserv/${pia_domain_name}/piaconfig/keystore/pskey"
+  $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
-  exec { "Set the pskey password for ${ps_config_home}/webserv/${pia_domain_name}/piaconfig/keystore/pskey" :
-    command => "keytool -keystore ${pskey_location} -storepass password -storepasswd -new ${password}",
-    onlyif  => "keytool -list -keystore ${pskey_location} -storepass ${password} |grep \"password was incorrect\"",
-    path    => "${java_home}/jre/bin/",
-    require => Pt_webserver_domain[$pia_domain_name],
-  }
+    $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
+    $pskey_location  = "${ps_cfg_home_dir}/webserv/${domain_name}/piaconfig/keystore/pskey"
 
-  Java_ks {
-    ensure       => latest,
-    target       => $pskey_location,
-    password     => $password,
-    trustcacerts => $trustcacerts,
-    require  => [Pt_webserver_domain[$pia_domain_name], Exec['keystore_password_pskey']],
-  }
+    exec { "Set the pskey password for ${ps_cfg_home_dir}/webserv/${domain_name}/piaconfig/keystore/pskey" :
+      command => "keytool -keystore ${pskey_location} -storepass password -storepasswd -new ${password}",
+      onlyif  => "keytool -list -keystore ${pskey_location} -storepass ${password} |/bin/grep \"password was incorrect\"",
+      path    => "${java_home}/jre/bin/",
+      require => Pt_webserver_domain[$domain_name],
+    }
 
-  $keys.each | $name, $value | {
-    java_ks { "Adding ${name} to the pskey keystore for ${pia_domain_name}" :
-      name        => $name,
-      certificate => $value['certificate'],
-      private_key => $value['private_key'],
-      path        => "${java_home}/jre/bin/",
+    Java_ks {
+      ensure       => latest,
+      target       => $pskey_location,
+      password     => $password,
+      trustcacerts => $trustcacerts,
+      require  => [Pt_webserver_domain[$domain_name], Exec["Set the pskey password for ${ps_cfg_home_dir}/webserv/${domain_name}/piaconfig/keystore/pskey"]],
+    }
+
+    $certificates["${domain_name}"].each | $name, $value | {
+      java_ks { "Adding ${name} to the pskey keystore for ${domain_name}" :
+        name        => $name,
+        certificate => $value['certificate'],
+        private_key => $value['private_key'],
+        path        => "${java_home}/jre/bin/",
+      }
     }
   }
 }
