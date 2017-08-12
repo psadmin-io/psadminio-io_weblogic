@@ -3,4 +3,6 @@ notifications:
   email:
     - contact@ericbisme.net
 env:
-  - PUPPET_VERSION=3.8.7
+  - PUPPET_GEM_VERSION="~> 3.8.0"
+  - PUPPET_GEM_VERSION="~> 4.10.0"
+  - PUPPET_GEM_VERSION="~> 5.0.0"
