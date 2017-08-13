@@ -1,41 +1,15 @@
-# == Class: io_weblogic
-#
-# Full description of class io_weblogic here.
-#
-# === Parameters
-#
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if
-#   it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should be avoided in favor of class parameters as
-#   of Puppet 2.6.)
-#
-# === Examples
-#
-#  class { 'io_weblogic':
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#  }
-#
-# === Authors
-#
-# Author Name <author@domain.com>
-#
-# === Copyright
-#
-# Copyright 2017 Your name here, unless otherwise noted.
-#
-class io_weblogic {
+class io_weblogic (
+) inherits io_weblogic::params {
 
+  if ($io_weblogic::params::java_options != undef) {
+    include ::io_weblogic::java_options
+  }
 
+  if ($io_weblogic::params::certificates != undef) or ($io_weblogic::params::pskey_passwd != 'password'){
+    include ::io_weblogic::pskey
+  }
+
+  if ($io_weblogic::params::standard_java_trust) or ($io_weblogic::params::cacert_passwd != 'password'){
+    include ::io_weblogic::cacert
+  }
 }

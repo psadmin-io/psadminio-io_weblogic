@@ -3,7 +3,7 @@ require 'spec_helper'
 describe('io_weblogic::java_options', :type => :class) do
   let(:default_params) do
     {
-      :settings        => { :hcmdmo => {'Xmx' => '1024m'} },
+      :java_options    => { :hcmdmo => {'Xmx' => '1024m'} },
     }
   end
 
