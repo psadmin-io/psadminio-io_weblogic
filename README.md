@@ -64,7 +64,7 @@ the fancy stuff with your module here.
 ### io_weblogic::java_options
 Hiera Example:
 ```yaml
-io_weblogic::java_options::settings:
+io_weblogic::params::java_options:
   iepdmo:
     Xms:                              '1024m'
     Xmx:                              '1024m'
@@ -75,7 +75,7 @@ io_weblogic::java_options::settings:
 ### io_weblogic::pskey
 Hiera Example:
 ```yaml
-io_weblogic::pskey::certificates:
+io_weblogic::params::certificates:
   iepdmo:
     demo_key:
       certificate: /tmp/cert.pem
