@@ -1,7 +1,7 @@
 class io_weblogic::params (
   $ensure              = hiera('ensure', 'present'),
-  $pia_domain_list     = hiera_hash('pia_domain_list'),
   $java_home           = hiera('jdk_location'),
+  $pia_domain_list     = hiera_hash('pia_domain_list'),
   $pskey_passwd        = 'password',
   $cacert_passwd       = 'changeit',
   $trustcacerts        = true,
@@ -9,10 +9,6 @@ class io_weblogic::params (
   $java_options        = undef,
   $certificates        = undef,
 ){
-
-  validate_hash($java_options)
-  validate_hash($certificates)
-  validate_hash($pia_domain_list)
 
   case $::facts['os']['name'] {
     'AIX':     {
@@ -23,11 +19,15 @@ class io_weblogic::params (
     }
     'windows': {
       $platform = 'WIN'
-      $setEnv   = 'setEnv.cmd'
+      $setenv   = 'setEnv.cmd'
     }
     default:   {
       $platform = 'LINUX'
-      $setEnv   = 'setEnv.sh'
+      $setenv   = 'setEnv.sh'
     }
   }
+
+  validate_hash($java_options)
+  validate_hash($certificates)
+  validate_hash($pia_domain_list)
 }

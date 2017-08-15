@@ -18,4 +18,5 @@ task :validate do
   end
 end
 
-task :default => [:spec, :lint]
+#task :default => [:spec, :lint]
+task :default => [:lint]

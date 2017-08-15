@@ -3,7 +3,7 @@ class io_weblogic::java_options (
   $pia_domain_list = $io_weblogic::params::pia_domain_list,
   $settings        = $io_weblogic::params::java_options,
   $platform        = $io_weblogic::params::platform,
-  $setEnv          = $io_weblogic::params::setEnv,
+  $setenv          = $io_weblogic::params::setenv,
 ) inherits io_weblogic::params {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
@@ -12,7 +12,7 @@ class io_weblogic::java_options (
 
     Ini_Subsetting {
       ensure               => $ensure,
-      path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setEnv}",
+      path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
       setting              => "JAVA_OPTIONS_${platform}",
       subsetting_separator => ' -',
       section              => '',

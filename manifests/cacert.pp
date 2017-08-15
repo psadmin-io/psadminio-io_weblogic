@@ -3,7 +3,7 @@ class io_weblogic::cacert (
   $java_home           = $io_weblogic::params::java_home,
   $password            = $io_weblogic::params::cacert_passwd,
   $standard_java_trust = $io_weblogic::params::standard_java_trust,
-  $setEnv              = $io_weblogic::params::setEnv,
+  $setenv              = $io_weblogic::params::setenv,
 ) inherits io_weblogic::params {
 
   $cacert_location    = "${java_home}/jre/lib/security/cacerts"
@@ -14,7 +14,7 @@ class io_weblogic::cacert (
     path    => "${java_home}/jre/bin/",
     #require => Pt_webserver_domain[$pia_domain_name],
   }
-  
+
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
@@ -22,7 +22,7 @@ class io_weblogic::cacert (
     if $standard_java_trust {
       file_line { 'Set javax.net.ssl.trustStore from delivered to cacerts':
         ensure => present,
-        path   => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setEnv}",
+        path   => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
         line   => "SSL_KEY_STORE_PATH=${cacert_location}",
         match  => '^SSL_KEY_STORE_PATH=.*'
       }

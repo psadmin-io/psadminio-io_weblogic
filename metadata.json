@@ -12,6 +12,7 @@
     {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
     {"name":"puppetlabs-inifile","version_requirement":">= 1.5.0"},
     {"name":"puppetlabs-java_ks","version_requirement":">= 1.4.1"}
-  ]
+  ],
+  "data_provider": "hiera"
 }
 
