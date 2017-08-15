@@ -8,11 +8,13 @@ class io_weblogic::params (
   $pskey_passwd              = 'password',
   $cacert_passwd             = 'changeit',
   $install_jce               = true,
+  $rename_pia_cookie         = false,
   $trustcacerts              = true,
   $standard_java_trust       = true,
   $java_options              = undef,
   $certificates              = undef,
   $jce_path                  = undef,
+  $pia_cookie_name           = undef,
 ){
 
   if (!$jce_path) {
