@@ -6,7 +6,7 @@ class io_weblogic::cookie_name (
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    if (!${pia_cookie_name}) {
+    if (!$pia_cookie_name) {
       $pia_cookie_name = "${pia_domain_name}-PSJSESSIONID"
     }
 
