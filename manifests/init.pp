@@ -13,7 +13,7 @@ class io_weblogic (
     include ::io_weblogic::cacert
   }
 
-  if ($io_weblogic::params::rename_webxml_cookie) {
-    include ::io_weblogic::cacert
+  if ($io_weblogic::params::rename_pia_cookie) {
+    include ::io_weblogic::cookie_name
   }
 }

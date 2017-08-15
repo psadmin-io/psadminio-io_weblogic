@@ -6,7 +6,7 @@ class io_weblogic::params (
   $cacert_passwd        = 'changeit',
   $trustcacerts         = true,
   $standard_java_trust  = true,
-  $rename_webxml_cookie = false,
+  $rename_pia_cookie    = false,
   $java_options         = undef,
   $certificates         = undef,
   $pia_cookie_name      = undef,
