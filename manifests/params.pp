@@ -52,7 +52,7 @@ class io_weblogic::params (
     default:   {
       $platform        = 'LINUX'
       $setenv          = 'setEnv.sh'
-      $extract_command = '/bin/unzip -o -j %s -d '
+      $extract_command = 'unzip -o -j %s -d '
     }
   }
 
