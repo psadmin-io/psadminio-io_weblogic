@@ -12,14 +12,14 @@ class io_weblogic::jce (
 
   $security_dir = "${java_home}/jre/lib/security"
 
-  archive { "/oracle_jce.zip" :
+  archive { '/oracle_jce.zip' :
     ensure          => $ensure,
     user            => $psft_install_user_name,
     group           => $oracle_install_user_name,
     extract         => true,
     source          => $jce_archive_path,
     cookie          => 'oraclelicense=accept-securebackup-cookie',
-    extract_path    => "${security_dir}",
+    extract_path    => $security_dir,
     extract_command => "${extract_command}${security_dir}",
     creates         => "${security_dir}/README.txt",
     cleanup         => true,
