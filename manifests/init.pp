@@ -12,8 +12,4 @@ class io_weblogic (
   if ($io_weblogic::params::standard_java_trust) or ($io_weblogic::params::cacert_passwd != 'password'){
     contain ::io_weblogic::cacert
   }
-
-  if ($io_weblogic::params::rename_pia_cookie) {
-    contain ::io_weblogic::cookie_name
-  }
 }
