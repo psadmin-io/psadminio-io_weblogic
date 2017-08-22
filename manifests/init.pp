@@ -2,18 +2,18 @@ class io_weblogic (
 ) inherits io_weblogic::params {
 
   if ($io_weblogic::params::java_options != undef) {
-    include ::io_weblogic::java_options
+    contain ::io_weblogic::java_options
   }
 
   if ($io_weblogic::params::certificates != undef) or ($io_weblogic::params::pskey_passwd != 'password'){
-    include ::io_weblogic::pskey
+    contain ::io_weblogic::pskey
   }
 
   if ($io_weblogic::params::standard_java_trust) or ($io_weblogic::params::cacert_passwd != 'password'){
-    include ::io_weblogic::cacert
+    contain ::io_weblogic::cacert
   }
 
   if ($io_weblogic::params::rename_pia_cookie) {
-    include ::io_weblogic::cookie_name
+    contain ::io_weblogic::cookie_name
   }
 }
