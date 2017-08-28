@@ -3,7 +3,7 @@ class io_weblogic::jce (
   $jce_archive_path         = $io_weblogic::params::jce_archive_path,
   $java_home                = $io_weblogic::params::java_home,
   $extract_command          = $io_weblogic::params::extract_command,
-  $psft_install_user_name   = $io_weblogic::params::psft_install_user_name,
+  $fileowner                = $io_weblogic::params::fileowner,
   $oracle_install_user_name = $io_weblogic::params::oracle_install_user_name,
 ) inherits io_weblogic::params {
 
@@ -14,7 +14,7 @@ class io_weblogic::jce (
 
   archive { '/oracle_jce.zip' :
     ensure          => $ensure,
-    user            => $psft_install_user_name,
+    user            => $fileowner,
     group           => $oracle_install_user_name,
     extract         => true,
     source          => $jce_archive_path,

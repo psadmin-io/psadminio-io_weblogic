@@ -3,8 +3,9 @@ class io_weblogic::params (
   $java_home                 = hiera('jdk_location'),
   $pia_domain_list           = hiera_hash('pia_domain_list'),
   $tools_version             = hiera('tools_version'),
-  $psft_install_user_name    = hiera('psft_install_user_name'),
-  $oracle_install_group_name = hiera('oracle_install_group_name'),
+  $psft_install_user_name    = hiera('psft_install_user_name', undef),
+  $oracle_install_group_name = hiera('oracle_install_group_name', undef),
+  $domain_user               = hiera('domain_user', undef),
   $pskey_passwd              = 'password',
   $cacert_passwd             = 'changeit',
   $install_jce               = true,
@@ -35,22 +36,33 @@ class io_weblogic::params (
     $jce_archive_path = $jce_path
   }
 
-  case $::facts['os']['name'] {
+  case $::osfamily {
     'AIX':     {
       $platform = 'AIX'
+      $setenv          = 'setEnv.sh'
+      $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
     }
     'Solaris': {
       $platform = 'SOLARIS'
+      $setenv          = 'setEnv.sh'
+      $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
     }
     'windows': {
-      $platform = 'WIN'
-      $setenv   = 'setEnv.cmd'
+      $platform        = 'WIN'
+      $setenv          = 'setEnv.cmd'
       $extract_command = '7z e -y -o'
+      $fileowner       = $domain_user
     }
-    default:   {
+    'Linux': {
       $platform        = 'LINUX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
+    }
+    default:   {
+      notify { "${::osfamily} is not supported" : }
     }
   }
 
