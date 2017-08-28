@@ -66,7 +66,7 @@ class io_weblogic::params (
     }
   }
 
-  validate_hash($java_options)
-  validate_hash($certificates)
+  if $java_options { validate_hash($java_options) }
+  if $certificates { validate_hash($certificates) }
   validate_hash($pia_domain_list)
 }

@@ -10,19 +10,37 @@ class io_weblogic::java_options (
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    Ini_Subsetting {
-      ensure               => $ensure,
-      path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
-      setting              => "JAVA_OPTIONS_${platform}",
-      subsetting_separator => ' -',
-      section              => '',
-    }
+    if $::osfamily == 'windows' {
+      Ini_Subsetting {
+        ensure               => $ensure,
+        path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
+        setting              => "SET JAVA_OPTIONS_${platform}",
+        subsetting_separator => ' -',
+        section              => '',
+      }
 
-    $settings["${domain_name}"].each | $subset, $val | {
-      ini_subsetting { "${domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
-        subsetting => $subset,
-        value      => $val,
+      $settings["${domain_name}"].each | $subset, $val | {
+        ini_subsetting { "${domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
+          subsetting => $subset,
+          value      => $val,
+        }
+      }
+    } else {
+     Ini_Subsetting {
+        ensure               => $ensure,
+        path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
+        setting              => "JAVA_OPTIONS_${platform}",
+        subsetting_separator => ' -',
+        section              => '',
+      }
+
+      $settings["${domain_name}"].each | $subset, $val | {
+        ini_subsetting { "${domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
+          subsetting => $subset,
+          value      => $val,
+        }
       }
     }
+    
   }
 }
