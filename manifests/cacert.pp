@@ -15,15 +15,17 @@ class io_weblogic::cacert (
     #require => Pt_webserver_domain[$pia_domain_name],
   }
 
-  $pia_domain_list.each |$domain_name, $pia_domain_info| {
+  if ( $standard_java_trust ) {
+    $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
-    $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
+      $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    file_line { 'Set javax.net.ssl.trustStore from delivered to cacerts':
-      ensure => present,
-      path   => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
-      line   => "${keystr_set}=${cacert_location}",
-      match  => "^${keystr_set}=.*"
+      file_line { 'Set javax.net.ssl.trustStore from delivered to cacerts':
+        ensure => present,
+        path   => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
+        line   => "${keystr_set}=${cacert_location}",
+        match  => "^${keystr_set}=.*"
+      }
     }
   }
 }
