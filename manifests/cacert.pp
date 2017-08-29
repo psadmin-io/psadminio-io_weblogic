@@ -8,12 +8,12 @@ class io_weblogic::cacert (
 
   $cacert_location    = "${java_home}/jre/lib/security/cacerts"
 
-    exec { "Set the cacert password for ${cacert_location}":
-      command => "keytool -keystore ${cacert_location} -storepass changeit -storepasswd -new ${password}",
-      unless  => "keytool -list -keystore ${cacert_location} -storepass ${password}",
-      path    => "${java_home}/jre/bin/",
-      #require => Pt_webserver_domain[$pia_domain_name],
-    }
+  exec { "Set the cacert password for ${cacert_location}":
+    command => "keytool -keystore ${cacert_location} -storepass changeit -storepasswd -new ${password}",
+    unless  => "keytool -list -keystore ${cacert_location} -storepass ${password}",
+    path    => "${java_home}/jre/bin/",
+    #require => Pt_webserver_domain[$pia_domain_name],
+  }
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
