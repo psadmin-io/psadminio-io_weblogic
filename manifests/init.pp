@@ -1,15 +1,81 @@
 class io_weblogic (
-) inherits io_weblogic::params {
+  $ensure                    = hiera('ensure', 'present'),
+  $java_home                 = hiera('jdk_location'),
+  $pia_domain_list           = hiera_hash('pia_domain_list'),
+  $tools_version             = hiera('tools_version'),
+  $psft_install_user_name    = hiera('psft_install_user_name', undef),
+  $oracle_install_group_name = hiera('oracle_install_group_name', undef),
+  $domain_user               = hiera('domain_user', undef),
+  $install_jce               = false,
+  $trustcacerts              = false,
+  $standard_java_trust       = false,
+  $pskey_passwd              = 'password',
+  $cacert_passwd             = 'changeit',
+  $java_options              = undef,
+  $certificates              = undef,
+  $jce_path                  = undef,
+) {
 
-  if ($io_weblogic::params::java_options != undef) {
+  if $java_options    { validate_hash($java_options)    }
+  if $certificates    { validate_hash($certificates)    }
+  if $pia_domain_list { validate_hash($pia_domain_list) }
+
+  if (!$jce_path) {
+    case $tools_version {
+      /8\.54\.*/: {
+        $jce_archive_path = 'http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip'
+      }   
+      /8\.55\.*/: {
+        $jce_archive_path = 'http://download.oracle.com/otn-pub/java/jce/7/UnlimitedJCEPolicyJDK7.zip'
+      }   
+      /8\.56\.*/: {
+        $jce_archive_path = 'http://download.oracle.com/otn-pub/java/jce/8/jce_policy-8.zip'
+      }   
+      default: {
+        fail("Module ${module_name} requires that you have tools_version defined in your hiera to download JCE from Oracle")
+      }   
+    }   
+  }
+  else {
+    $jce_archive_path = $jce_path
+  }
+
+  case $::osfamily {
+    'windows': {
+      $platform        = 'WIN'
+      $setenv          = 'setEnv.cmd'
+      $extract_command = '7z e -y -o'
+      $fileowner       = $domain_user
+    }   
+    'AIX': {   
+      $platform = 'AIX'
+    }   
+    'Solaris': {
+      $platform = 'SOLARIS'
+    }   
+    'Linux': {
+      $platform = 'LINUX'
+    }
+    default:   {
+      $setenv          = 'setEnv.sh'
+      $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
+    }
+  }
+
+  if ($java_options != undef) {
     contain ::io_weblogic::java_options
   }
 
-  if ($io_weblogic::params::certificates != undef) or ($io_weblogic::params::pskey_passwd != 'password'){
+  if ($certificates != undef) or ($pskey_passwd != 'password'){
     contain ::io_weblogic::pskey
   }
 
-  if ($io_weblogic::params::standard_java_trust) or ($io_weblogic::params::cacert_passwd != 'password'){
+  if ($standard_java_trust) or ($cacert_passwd != 'password'){
     contain ::io_weblogic::cacert
+  }
+
+  if ($install_jce){
+    contain ::io_weblogic::jce
   }
 }
