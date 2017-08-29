@@ -5,10 +5,7 @@ class io_weblogic::jce (
   $extract_command          = $io_weblogic::params::extract_command,
   $fileowner                = $io_weblogic::params::fileowner,
   $oracle_install_user_name = $io_weblogic::params::oracle_install_user_name,
-) inherits io_weblogic::params {
-
-
-  notice( "JCE Archive Path: ${jce_archive_path}" )
+) inherits io_weblogic{
 
   $security_dir = "${java_home}/jre/lib/security"
 

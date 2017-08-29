@@ -4,7 +4,7 @@ class io_weblogic::cacert (
   $password            = $io_weblogic::params::cacert_passwd,
   $standard_java_trust = $io_weblogic::params::standard_java_trust,
   $setenv              = $io_weblogic::params::setenv,
-) inherits io_weblogic::params {
+) inherits io_weblogic {
 
   $cacert_location    = "${java_home}/jre/lib/security/cacerts"
 
@@ -15,7 +15,8 @@ class io_weblogic::cacert (
       path    => "${java_home}/jre/bin/",
       #require => Pt_webserver_domain[$pia_domain_name],
     }
-  } else {
+  }
+  else {
     exec { "Set the cacert password for ${cacert_location}":
       command => "keytool -keystore ${cacert_location} -storepass changeit -storepasswd -new ${password}",
       onlyif  => "keytool -list -keystore ${cacert_location} -storepass ${password} |/bin/grep \"password was incorrect\"",
@@ -36,7 +37,8 @@ class io_weblogic::cacert (
           line   => "SET SSL_KEY_STORE_PATH=${cacert_location}",
           match  => '^SET SSL_KEY_STORE_PATH=.*'
         }
-      } else {
+      }
+      else {
         file_line { 'Set javax.net.ssl.trustStore from delivered to cacerts':
           ensure => present,
           path   => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
