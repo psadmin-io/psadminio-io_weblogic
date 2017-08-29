@@ -1,11 +1,11 @@
 class io_weblogic (
   $ensure                    = hiera('ensure', 'present'),
   $java_home                 = hiera('jdk_location'),
-  $pia_domain_list           = hiera_hash('pia_domain_list'),
   $tools_version             = hiera('tools_version'),
   $psft_install_user_name    = hiera('psft_install_user_name', undef),
   $oracle_install_group_name = hiera('oracle_install_group_name', undef),
   $domain_user               = hiera('domain_user', undef),
+  $pia_domain_list           = hiera_hash('pia_domain_list'),
   $install_jce               = false,
   $trustcacerts              = false,
   $standard_java_trust       = false,
