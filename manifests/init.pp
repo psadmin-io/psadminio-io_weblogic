@@ -83,7 +83,7 @@ class io_weblogic (
     contain ::io_weblogic::pskey
   }
 
-  if ($standard_java_trust) or ($cacert_passwd != 'password'){
+  if ($standard_java_trust) or ($cacert_passwd != 'changeit'){
     contain ::io_weblogic::cacert
   }
 
