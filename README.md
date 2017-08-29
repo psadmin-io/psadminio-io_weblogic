@@ -122,14 +122,14 @@ io_weblogic::standard_java_trust: true
 
 ### io_weblogic::jce
 
-The JCE class downloads and installs the JAVA Unlimite Cryptography Extensions needed for setting up WebLogic for SSL
+The JCE class downloads and installs the JAVA Unlimited Cryptography Extensions needed for setting up WebLogic for SSL
 
 This class will be run if the install_jce flag is set to true.
 
 By default the class will download the JCE files directly from Oracle. 1.7 for PT 8.55/8.54 and 1.8 for 8.56. See the
 hiera example for an example of how to pass in a path or another URL.
 
-For extracting the archives you will need unzip on Linux or 7zip on Windows.
+For extracting the archives you will need `unzip` on Linux or `7zip` on Windows.
 
 Hiera Example:
 ```yaml
