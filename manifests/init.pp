@@ -65,15 +65,13 @@ class io_weblogic (
       $keystr_set      = 'SSL_KEY_STORE_PATH'
       $javaopt_set     = 'JAVA_OPTIONS_'
     }   
-    'Linux': {
+    default: {
       $platform = 'LINUX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
       $keystr_set      = 'SSL_KEY_STORE_PATH'
       $javaopt_set     = 'JAVA_OPTIONS_'
-    }
-    default: {
     }
   }
 
