@@ -46,20 +46,34 @@ class io_weblogic (
       $setenv          = 'setEnv.cmd'
       $extract_command = '7z e -y -o'
       $fileowner       = $domain_user
+      $keystr_set      = 'SET SSL_KEY_STORE_PATH'
+      $javaopt_set     = 'SET JAVA_OPTIONS_'
     }   
     'AIX': {   
       $platform = 'AIX'
-    }   
-    'Solaris': {
-      $platform = 'SOLARIS'
-    }   
-    'Linux': {
-      $platform = 'LINUX'
-    }
-    default:   {
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
+      $keystr_set      = 'SSL_KEY_STORE_PATH'
+      $javaopt_set     = 'JAVA_OPTIONS_'
+    }   
+    'Solaris': {
+      $platform = 'SOLARIS'
+      $setenv          = 'setEnv.sh'
+      $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
+      $keystr_set      = 'SSL_KEY_STORE_PATH'
+      $javaopt_set     = 'JAVA_OPTIONS_'
+    }   
+    'Linux': {
+      $platform = 'LINUX'
+      $setenv          = 'setEnv.sh'
+      $extract_command = 'unzip -o -j %s -d '
+      $fileowner       = $psft_install_user_name
+      $keystr_set      = 'SSL_KEY_STORE_PATH'
+      $javaopt_set     = 'JAVA_OPTIONS_'
+    }
+    default: {
     }
   }
 
