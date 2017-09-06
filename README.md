@@ -70,10 +70,10 @@ Hiera Example:
 ```yaml
 io_weblogic::java_options:
   iepdmo:
-    Xms:                              '1024m'
-    Xmx:                              '1024m'
-    Dweblogic.threadpool.MinPoolSize: '=100'
-    Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
+    -Xms:                              '1024m'
+    -Xmx:                              '1024m'
+    -Dweblogic.threadpool.MinPoolSize: '=100'
+    -Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
 ```
 
 ### io_weblogic::pskey
