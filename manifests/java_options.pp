@@ -1,10 +1,11 @@
 class io_weblogic::java_options (
-  $ensure          = $io_weblogic::params::ensure,
-  $pia_domain_list = $io_weblogic::params::pia_domain_list,
-  $settings        = $io_weblogic::params::java_options,
-  $platform        = $io_weblogic::params::platform,
-  $setenv          = $io_weblogic::params::setenv,
-) inherits io_weblogic::params {
+  $ensure          = $io_weblogic::ensure,
+  $pia_domain_list = $io_weblogic::pia_domain_list,
+  $settings        = $io_weblogic::java_options,
+  $platform        = $io_weblogic::platform,
+  $setenv          = $io_weblogic::setenv,
+  $javaopt_set     = $io_weblogic::javaopt_set,
+) inherits io_weblogic {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
@@ -13,13 +14,12 @@ class io_weblogic::java_options (
     Ini_Subsetting {
       ensure               => $ensure,
       path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
-      setting              => "JAVA_OPTIONS_${platform}",
-      subsetting_separator => ' -',
+      setting              => "${javaopt_set}${platform}",
       section              => '',
     }
 
     $settings["${domain_name}"].each | $subset, $val | {
-      ini_subsetting { "${domain_name} WLS JAVA_OPTIONS_${platform}, ${subset}, ${val}" :
+      ini_subsetting { "${domain_name} WLS ${javaopt_set}${platform}, ${subset}, ${val}" :
         subsetting => $subset,
         value      => $val,
       }
