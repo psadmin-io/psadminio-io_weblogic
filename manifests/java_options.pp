@@ -14,7 +14,6 @@ class io_weblogic::java_options (
       ensure               => $ensure,
       path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
       setting              => "${javaopt_set}${platform}",
-      subsetting_separator => ' -',
       section              => '',
     }
 
