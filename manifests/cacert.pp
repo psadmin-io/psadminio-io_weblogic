@@ -4,6 +4,7 @@ class io_weblogic::cacert (
   $password            = $io_weblogic::cacert_passwd,
   $standard_java_trust = $io_weblogic::standard_java_trust,
   $setenv              = $io_weblogic::setenv,
+  $keystr_set          = $io_weblogic::keystr_set,
 ) inherits io_weblogic {
 
   $cacert_location    = "${java_home}/jre/lib/security/cacerts"
