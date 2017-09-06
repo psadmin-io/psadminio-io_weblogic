@@ -4,6 +4,7 @@ class io_weblogic::java_options (
   $settings        = $io_weblogic::java_options,
   $platform        = $io_weblogic::platform,
   $setenv          = $io_weblogic::setenv,
+  $javaopt_set     = $io_weblogic::javaopt_set,
 ) inherits io_weblogic {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
