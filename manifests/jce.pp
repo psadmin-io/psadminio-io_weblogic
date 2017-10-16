@@ -5,7 +5,7 @@ class io_weblogic::jce (
   $extract_command          = $io_weblogic::extract_command,
   $fileowner                = $io_weblogic::fileowner,
   $oracle_install_user_name = $io_weblogic::oracle_install_user_name,
-) inherits io_weblogic{
+) {
 
   $security_dir = "${java_home}/jre/lib/security"
 
