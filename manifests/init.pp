@@ -1,5 +1,5 @@
 class io_weblogic (
-  $ensure                    = $::io_weblogic::params::ensure
+  $ensure                    = $::io_weblogic::params::ensure,
   $java_home                 = $::io_weblogic::params::java_home,
   $tools_version             = $::io_weblogic::params::tools_version,
   $psft_install_user_name    = $::io_weblogic::params::psft_install_user_name,
