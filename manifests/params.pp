@@ -1,5 +1,5 @@
 class io_weblogic::params {
-  $ensure                    = present,
+  $ensure                    = 'present'
   $java_home                 = hiera('jdk_location')
   $tools_version             = hiera('tools_version')
   $psft_install_user_name    = 'psadm1'
