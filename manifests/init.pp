@@ -17,18 +17,18 @@ class io_weblogic (
 ) inherits ::io_weblogic::params {
 
   if ($java_options != undef) {
-    include ::io_weblogic::java_options
+    contain ::io_weblogic::java_options
   }
 
   if ($certificates != undef) or ($pskey_passwd != 'password'){
-    include ::io_weblogic::pskey
+    contain ::io_weblogic::pskey
   }
 
   if ($standard_java_trust) or ($cacert_passwd != 'changeit'){
-    include ::io_weblogic::cacert
+    contain ::io_weblogic::cacert
   }
 
   if ($install_jce){
-    include ::io_weblogic::jce
+    contain ::io_weblogic::jce
   }
 }
