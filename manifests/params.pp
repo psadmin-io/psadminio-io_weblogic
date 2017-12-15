@@ -1,16 +1,16 @@
 class io_weblogic::params {
-  $ensure                    = hiera('ensure', 'present')
+  $ensure                    = present,
   $java_home                 = hiera('jdk_location')
   $tools_version             = hiera('tools_version')
-  $psft_install_user_name    = hiera('psft_install_user_name', undef)
-  $oracle_install_group_name = hiera('oracle_install_group_name', undef)
-  $domain_user               = hiera('domain_user', undef)
-  $pia_domain_list           = hiera_hash('pia_domain_list')
+  $psft_install_user_name    = 'psadm1',
+  $oracle_install_group_name = 'oinstall',
+  $domain_user               = 'psadm2',
+  $pskey_passwd              = 'password'
+  $cacert_passwd             = 'changeit'
+  $pia_domain_list           = undef
   $install_jce               = false
   $trustcacerts              = false
   $standard_java_trust       = false
-  $pskey_passwd              = 'password'
-  $cacert_passwd             = 'changeit'
   $java_options              = undef
   $certificates              = undef
   $jce_path                  = undef
