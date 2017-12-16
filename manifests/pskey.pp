@@ -4,7 +4,7 @@ class io_weblogic::pskey (
   $password        = $io_weblogic::pskey_passwd,
   $certificates    = $io_weblogic::certificates,
   $trustcacerts    = $io_weblogic::trustcacerts,
-) inherits io_weblogic {
+) {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
 
