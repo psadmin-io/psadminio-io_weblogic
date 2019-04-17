@@ -14,6 +14,10 @@ class io_weblogic::params {
   $java_options              = undef
   $certificates              = undef
   $jce_path                  = undef
+  $prebuilt_pskey            = undef
+  $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2'),
+  $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall'),
+
 
   if $java_options    { validate_hash($java_options)    }
   if $certificates    { validate_hash($certificates)    }
