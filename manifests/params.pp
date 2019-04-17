@@ -6,7 +6,7 @@ class io_weblogic::params {
   $cacert_passwd             = 'changeit'
   $java_home                 = undef
   $tools_version             = undef
-  $pia_domain_list           = undef
+  $pia_domain_list           = hiera('pia_domain_list')
   $install_jce               = false
   $trustcacerts              = false
   $standard_java_trust       = false
