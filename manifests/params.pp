@@ -1,7 +1,6 @@
 class io_weblogic::params {
   $ensure                    = 'present'
   $psft_install_user_name    = 'psadm1'
-  $oracle_install_group_name = 'oinstall'
   $domain_user               = 'psadm2'
   $pskey_passwd              = 'password'
   $cacert_passwd             = 'changeit'
