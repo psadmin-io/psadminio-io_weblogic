@@ -15,8 +15,6 @@ class io_weblogic (
   $certificates              = $::io_weblogic::params::certificates,
   $jce_path                  = $::io_weblogic::params::jce_path,
   $prebuilt_pskey            = $::io_weblogic::params::prebuilt_pskey,
-  $psft_runtime_user_name    = $::io_weblogic::params::psft_install_user_name,
-  $oracle_install_group_name = $::io_weblogic::params::oracle_install_group_name,
 ) inherits ::io_weblogic::params {
 
   if ($java_options != undef) {
