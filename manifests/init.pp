@@ -34,9 +34,8 @@ class io_weblogic (
   if ($install_jce){
     contain ::io_weblogic::jce
   }
+
   if ($prebuilt_pskey){
     contain ::io_weblogic::prebuilt_pskey
-  } else {
-    notify {"No prebuilt pskey to deploy":}
   }
 }
