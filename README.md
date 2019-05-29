@@ -54,6 +54,7 @@ For an introduction to Puppet Check out these resources
 
 * PeopleSoft installed via DPK (Puppet)
 * Ability to use Puppet Forge modules in your deployment
+* Remove the line `data_binding_terminus = none` from your `puppet.conf` file
 
 ### Beginning with io_weblogic
 
