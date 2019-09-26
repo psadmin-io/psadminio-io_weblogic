@@ -14,11 +14,9 @@ class io_weblogic::omc_apm_agent (
     $apm_agent_location  = "${ps_cfg_home_dir}/webserv/${domain_name}"
 
     exec { "${domain_name}-OMC-RegistrationKey":
-      ensure  => $ensure,
       command => "echo ${apm_reg_key} > ${apm_install_dir}/reg.txt",
     }
     -> exec {"${domain_name}-OMC-APMAgent":
-      ensure  => $ensure,
       command => "chmod +x ${apm_install_dir}/ProvisionApmJavaAsAgent.sh && ${apm_install_dir}/ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet",
       creates => "${domain_home}/apmagent",
       user    => $psft_runtime_user_name,
