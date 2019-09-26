@@ -15,7 +15,7 @@ class io_weblogic::omc_apm_agent (
 
     exec { "${domain_name}-OMC-RegistrationKey":
       ensure  => $ensure,
-      command => "echo "${apm_reg_key}" > ${apm_install_dir}/reg.txt",
+      command => "echo ${apm_reg_key} > ${apm_install_dir}/reg.txt",
     }
     -> exec {"${domain_name}-OMC-APMAgent":
       ensure  => $ensure,
