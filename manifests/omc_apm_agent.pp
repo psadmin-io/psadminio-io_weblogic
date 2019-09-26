@@ -24,6 +24,7 @@ class io_weblogic::omc_apm_agent (
     -> exec {"${domain_name}-OMC-APMAgent":
       command => "su -c 'cd ${apm_install_dir} && /bin/chmod +x ${apm_install_dir}/ProvisionApmJavaAsAgent.sh && ${apm_install_dir}/ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet' ${psft_runtime_user_name}",
       creates => "${domain_home}/apmagent",
+      path    => "/usr/local/bin/:/bin/",
     }
     
   }
