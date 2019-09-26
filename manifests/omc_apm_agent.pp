@@ -15,7 +15,7 @@ class io_weblogic::omc_apm_agent (
 
     file {"${domain_name}-OMC-RegKey":
       ensure  => $ensure,
-      path    => "${apm_install_dir}/reg.txt"
+      path    => "${apm_install_dir}/reg.txt",
       content => $apm_reg_key,
       user    => $psft_runtime_user_name,
       group   => $oracle_install_group_name,
