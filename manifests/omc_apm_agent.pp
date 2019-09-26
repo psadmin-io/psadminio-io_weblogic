@@ -3,9 +3,9 @@ class io_weblogic::omc_apm_agent (
   $pia_domain_list = $io_weblogic::pia_domain_list,
   $omc_apm_agent  = $io_weblogic::omc_apm_agent,
   $psft_runtime_user_name = $io_weblogic::psft_runtime_user_name,
-  $oracle_install_group_name = $io_weblogic::oracle_install_group_name
-  $apm_install_dir = $io_weblogic::apm_install_dir
-  $apm_reg_key = $io_weblogic::apm_reg_key
+  $oracle_install_group_name = $io_weblogic::oracle_install_group_name,
+  $apm_install_dir = $io_weblogic::apm_install_dir,
+  $apm_reg_key = $io_weblogic::apm_reg_key,
 ) inherits io_weblogic {
 
   $pia_domain_list.each |$domain_name, $pia_domain_info| {
