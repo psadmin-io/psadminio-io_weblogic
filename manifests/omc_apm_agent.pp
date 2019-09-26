@@ -22,7 +22,7 @@ class io_weblogic::omc_apm_agent (
       mode    => '0644',
     }
     -> exec {"${domain_name}-OMC-APMAgent":
-      command => "su -c 'chmod +x ${apm_install_dir}/ProvisionApmJavaAsAgent.sh && ${apm_install_dir}/ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet' ${psft_runtime_user_name}",
+      command => "su -c '/bin/chmod +x ${apm_install_dir}/ProvisionApmJavaAsAgent.sh && ${apm_install_dir}/ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet' ${psft_runtime_user_name}",
       creates => "${domain_home}/apmagent",
     }
     
