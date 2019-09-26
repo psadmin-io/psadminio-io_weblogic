@@ -138,6 +138,26 @@ io_weblogic::install_jce: true
 io_weblogic::jce_archive_path: (alternate filesystem path or URL)
 ```
 
+### io_weblogic::prebuilt_pskey
+
+This class will deploy a pre-built `pskey` file from a location into your PIA domain. Unlike the `pskey` class, the `prebuilt_pskey` class does not interact with the delivered file. Instead, the class overwrites the delivered file with your custom `pskey` file.
+
+Hiera Example:
+```yaml
+io_weblogic::prebuilt_pskey: /path/to/nfs/share/pskey
+```
+
+### io_weblogic::omc_apm_agent
+
+This class will deploy the Oracle Management Cloud APM agent to your PIA domain. The class assumes you have downloaded the APM agent from the OMC site and unzipped it to a common location. Add your registration key and the class will install the APM agent into your PIA domain. You must also add the necessary `JAVA_OPTIONS` as well so the APM agent is loaded when the domain starts.
+
+Hiera Example:
+```yaml
+io_weblogic::omc_apm_agent: true
+io_weblogic::apm_install_dir: /tmp/apm
+io_weblogic::apm_reg_key: '<Registration Key from OMC console>'
+```
+
 ## Reference
 
 ## Limitations

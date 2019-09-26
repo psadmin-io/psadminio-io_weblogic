@@ -17,6 +17,9 @@ class io_weblogic (
   $prebuilt_pskey            = $::io_weblogic::params::prebuilt_pskey,
   $psft_runtime_user_name    = $::io_weblogic::params::psft_install_user_name,
   $oracle_install_group_name = $::io_weblogic::params::oracle_install_group_name,
+  $omc_apm_agent             = $::io_weblogic::params::omc_apm_agent,
+  $apm_install_dir           = $::io_weblogic::params::apm_install_dir,
+  $apm_reg_key               = $::io_weblogic::params::apm_reg_key,
 ) inherits ::io_weblogic::params {
 
   if ($java_options != undef) {
@@ -37,5 +40,9 @@ class io_weblogic (
 
   if ($prebuilt_pskey){
     contain ::io_weblogic::prebuilt_pskey
+  }
+
+  if ($omc_apm_agent){
+    contain ::io_weblogic::omc_apm_agent
   }
 }
