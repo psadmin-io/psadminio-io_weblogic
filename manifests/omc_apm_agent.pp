@@ -6,7 +6,7 @@ class io_weblogic::omc_apm_agent (
   $oracle_install_group_name = $io_weblogic::oracle_install_group_name,
   $apm_install_dir = $io_weblogic::apm_install_dir,
   $apm_reg_key = $io_weblogic::apm_reg_key,
-  $java_home = $io_weblogic::java_home,
+  $jdk_home = $io_weblogic::jdk_home,
 ) inherits io_weblogic {
 
   file {"${domain_name}-OMC-RegKey":
@@ -24,9 +24,9 @@ class io_weblogic::omc_apm_agent (
     $apm_agent_location  = "${ps_cfg_home_dir}/webserv/${domain_name}"
     
     exec {"${domain_name}-OMC-APMAgent":
-      command => "su -c 'export JAVA_HOME=${java_home} && export PATH=\$PATH:\$JAVA_HOME/bin && cd ${apm_install_dir} && /bin/chmod +x ProvisionApmJavaAsAgent.sh && ./ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet' ${psft_runtime_user_name}",
+      command => "su -c '/bin/chmod +x ProvisionApmJavaAsAgent.sh && ./ProvisionApmJavaAsAgent.sh -d ${apm_agent_location} -no-prompt -regkey-file ${apm_install_dir}/reg.txt -no-wallet' ${psft_runtime_user_name}",
       creates => "${domain_home}/apmagent",
-      path    => "/sbin/:/usr/local/bin/:/usr/bin/:/bin/:${java_home}/bin/",
+      path    => "/sbin/:/usr/local/bin/:/usr/bin/:/bin/:${jdk_home}/bin/",
       cwd     => $apm_install_dir,
       # environment => ["JAVA_HOME=${java_home}", "PATH=\$PATH:\$JAVA_HOME/bin/"],
     }
