@@ -9,7 +9,7 @@ class io_weblogic::params {
   $install_jce               = false
   $trustcacerts              = false
   $standard_java_trust       = false
-  $java_options              = undef
+  # $java_options              = undef
   $certificates              = undef
   $jce_path                  = undef
   $prebuilt_pskey            = undef
@@ -20,7 +20,7 @@ class io_weblogic::params {
   $apm_install_dir           = undef
   $apm_reg_key               = undef
 
-  if $java_options    { validate_hash($java_options)    }
+  # if $java_options    { validate_hash($java_options)    }
   if $certificates    { validate_hash($certificates)    }
   if $pia_domain_list { validate_hash($pia_domain_list) }
 
@@ -34,7 +34,7 @@ class io_weblogic::params {
       $javaopt_set     = 'SET JAVA_OPTIONS_'
     }
     'AIX': {
-      $platform = 'AIX'
+      $platform        = 'AIX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
@@ -42,7 +42,7 @@ class io_weblogic::params {
       $javaopt_set     = 'JAVA_OPTIONS_'
     }
     'Solaris': {
-      $platform = 'SOLARIS'
+      $platform        = 'SOLARIS'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
@@ -50,7 +50,7 @@ class io_weblogic::params {
       $javaopt_set     = 'JAVA_OPTIONS_'
     }
     default: {
-      $platform = 'LINUX'
+      $platform        = 'LINUX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
