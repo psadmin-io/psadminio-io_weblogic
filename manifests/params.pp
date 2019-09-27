@@ -19,7 +19,6 @@ class io_weblogic::params {
   $omc_apm_agent             = undef
   $apm_install_dir           = undef
   $apm_reg_key               = undef
-  $jdk_locaion               = undef
 
   if $java_options    { validate_hash($java_options)    }
   if $certificates    { validate_hash($certificates)    }

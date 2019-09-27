@@ -21,7 +21,6 @@ class io_weblogic (
   $omc_apm_agent             = $::io_weblogic::params::omc_apm_agent,
   $apm_install_dir           = $::io_weblogic::params::apm_install_dir,
   $apm_reg_key               = $::io_weblogic::params::apm_reg_key,
-  $jdk_locaion               = $::io_weblogic::params::jdk_locaion,
 ) inherits ::io_weblogic::params {
 
   if ($java_options != undef) {
