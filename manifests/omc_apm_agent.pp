@@ -28,7 +28,7 @@ class io_weblogic::omc_apm_agent (
       creates => "${domain_home}/apmagent",
       path    => "/sbin/:/usr/local/bin/:/usr/bin/:/bin/:${java_home}/bin/",
       cwd     => $apm_install_dir,
-      # environment => ["JAVA_HOME=${java_home}", "PATH=/sbin/:/usr/local/bin/:/usr/bin/:/bin/:\$JAVA_HOME/bin/"],
+      environment => ["JAVA_HOME=${java_home}", "PATH=\$PATH:\$JAVA_HOME/bin/"],
     }
     
   }
