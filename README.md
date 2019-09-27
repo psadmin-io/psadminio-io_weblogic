@@ -153,9 +153,10 @@ This class will deploy the Oracle Management Cloud APM agent to your PIA domain.
 
 Hiera Example:
 ```yaml
-io_weblogic::omc_apm_agent: true
-io_weblogic::apm_install_dir: /tmp/apm
-io_weblogic::apm_reg_key: '<Registration Key from OMC console>'
+io_weblogic::omc_apm_agent:    true
+io_weblogic::apm_install_dir:  /nfs/share/apm
+io_weblogic::apm_reg_key:      '<Registration Key from OMC console>'
+io_weblogic::java_home:        "%{hiera('jdk_location')}
 ```
 
 ## Reference
