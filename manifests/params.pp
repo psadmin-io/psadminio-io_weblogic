@@ -1,6 +1,5 @@
 class io_weblogic::params {
   $ensure                    = 'present'
-  $psft_install_user_name    = 'psadm1'
   $domain_user               = 'psadm2'
   $pskey_passwd              = 'password'
   $cacert_passwd             = 'changeit'
@@ -15,8 +14,11 @@ class io_weblogic::params {
   $jce_path                  = undef
   $prebuilt_pskey            = undef
   $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
+  $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
   $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
-
+  $omc_apm_agent             = undef
+  $apm_install_dir           = undef
+  $apm_reg_key               = undef
 
   if $java_options    { validate_hash($java_options)    }
   if $certificates    { validate_hash($certificates)    }
