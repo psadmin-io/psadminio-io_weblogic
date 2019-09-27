@@ -9,7 +9,7 @@ class io_weblogic::params {
   $install_jce               = false
   $trustcacerts              = false
   $standard_java_trust       = false
-  # $java_options              = undef
+  $java_options              = undef
   $certificates              = undef
   $jce_path                  = undef
   $prebuilt_pskey            = undef
