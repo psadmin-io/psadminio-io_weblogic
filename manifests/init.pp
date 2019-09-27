@@ -11,7 +11,7 @@ class io_weblogic (
   $standard_java_trust       = $::io_weblogic::params::standard_java_trust,
   $pskey_passwd              = $::io_weblogic::params::pskey_passwd,
   $cacert_passwd             = $::io_weblogic::params::cacert_passwd,
-  # $java_options              = $::io_weblogic::params::java_options,
+  $java_options              = $::io_weblogic::params::java_options,
   $certificates              = $::io_weblogic::params::certificates,
   $jce_path                  = $::io_weblogic::params::jce_path,
   $prebuilt_pskey            = $::io_weblogic::params::prebuilt_pskey,
