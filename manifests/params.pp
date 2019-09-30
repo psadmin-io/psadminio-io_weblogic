@@ -34,7 +34,7 @@ class io_weblogic::params {
       $javaopt_set     = 'SET JAVA_OPTIONS_'
     }
     'AIX': {
-      $platform = 'AIX'
+      $platform        = 'AIX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
@@ -42,7 +42,7 @@ class io_weblogic::params {
       $javaopt_set     = 'JAVA_OPTIONS_'
     }
     'Solaris': {
-      $platform = 'SOLARIS'
+      $platform        = 'SOLARIS'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
@@ -50,7 +50,7 @@ class io_weblogic::params {
       $javaopt_set     = 'JAVA_OPTIONS_'
     }
     default: {
-      $platform = 'LINUX'
+      $platform        = 'LINUX'
       $setenv          = 'setEnv.sh'
       $extract_command = 'unzip -o -j %s -d '
       $fileowner       = $psft_install_user_name
