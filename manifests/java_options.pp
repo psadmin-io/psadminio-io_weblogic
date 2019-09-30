@@ -11,6 +11,7 @@ class io_weblogic::java_options (
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
+    # For some 8.55 installations, setting Class-level defaults is failing.
     # Ini_Subsetting {
     #   ensure               => $ensure,
     #   path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
@@ -29,20 +30,6 @@ class io_weblogic::java_options (
       }
     }
 
-    # Move io_weblogic::java_options into pia_domain_config: section
-    # $settings = $pia_domain_info['io_weblogic::java_options']
-    # if $settings {
-    #   $settings.each | $subset, $val | {
-    #     ini_subsetting { "${domain_name} WLS ${javaopt_set}${platform}, ${subset}, ${val}" :
-    #       ensure     => $ensure,
-    #       path       => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
-    #       setting    => "${javaopt_set}${platform}",
-    #       section    => '',
-    #       subsetting => $subset,
-    #       value      => $val,
-    #     }
-    #   }
-    # }
 
   }
 }
