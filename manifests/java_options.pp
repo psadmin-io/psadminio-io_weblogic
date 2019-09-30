@@ -11,15 +11,19 @@ class io_weblogic::java_options (
 
     $ps_cfg_home_dir = $pia_domain_info['ps_cfg_home_dir']
 
-    Ini_Subsetting {
-      ensure               => $ensure,
-      path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
-      setting              => "${javaopt_set}${platform}",
-      section              => '',
-    }
+    # Ini_Subsetting {
+    #   ensure               => $ensure,
+    #   path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
+    #   setting              => "${javaopt_set}${platform}",
+    #   section              => '',
+    # }
 
     $settings["${domain_name}"].each | $subset, $val | {
-      ini_subsetting { "${domain_name} WLS ${javaopt_set}${platform}, ${subset}, ${val}" :
+      ini_subsetting { "${domain_name} WLS ${javaopt_set}${platform}, ${subset}, '${val}'" :
+        ensure               => $ensure,
+        path                 => "${ps_cfg_home_dir}/webserv/${domain_name}/bin/${setenv}",
+        setting              => "${javaopt_set}${platform}",
+        section              => '',
         subsetting => $subset,
         value      => $val,
       }
