@@ -2,16 +2,24 @@
 
 #### Table of Contents
 
-1. [Overview](#overview)
-2. [Module Description - What the module does and why it is useful](#module-description)
-3. [Setup - The basics of getting started with io_weblogic](#setup)
-    * [What io_weblogic affects](#what-io_weblogic-affects)
-    * [Setup requirements](#setup-requirements)
-    * [Beginning with io_weblogic](#beginning-with-io_weblogic)
-4. [Usage - Configuration options and additional functionality](#usage)
-5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
+- [io\_weblogic](#io_weblogic)
+      - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Module Description](#module-description)
+  - [Setup](#setup)
+    - [What io\_weblogic affects](#what-io_weblogic-affects)
+    - [Setup Requirements](#setup-requirements)
+    - [Beginning with io\_weblogic](#beginning-with-io_weblogic)
+  - [Usage](#usage)
+    - [io\_weblogic::java\_options](#io_weblogicjava_options)
+    - [io\_weblogic::pskey](#io_weblogicpskey)
+    - [io\_weblogic::cacert](#io_weblogiccacert)
+    - [io\_weblogic::jce](#io_weblogicjce)
+    - [io\_weblogic::prebuilt\_pskey](#io_weblogicprebuilt_pskey)
+    - [io\_weblogic::omc\_apm\_agent](#io_weblogicomc_apm_agent)
+  - [Reference](#reference)
+  - [Limitations](#limitations)
+  - [Development](#development)
 
 ## Overview
 
@@ -67,6 +75,8 @@ For an introduction to Puppet Check out these resources
 Java Options Will allow you to pass in a hash and set arbitrary values for the Java Options in setEnv.sh/setEnv.cmd.
 This Class will be run by default if the io_weblogic::java_options hash is defined in hiera.
 
+When using `-XX` values, the YAML key must be unique. To get around this limitation, you can use part of the value string for the key since the module simply concatenates the values in `setEnv.sh`.
+
 Hiera Example:
 ```yaml
 io_weblogic::java_options:
@@ -75,6 +85,11 @@ io_weblogic::java_options:
     -Xmx:                              '1024m'
     -Dweblogic.threadpool.MinPoolSize: '=100'
     -Dhttps.protocols:                 '=TLSv1,TLSv1.1,TLSv1.2'
+    '-XX:+UseG1': 'GC'
+    '-XX:+UseString': 'Deduplication'
+    '-XX:G1Reserve': 'Percent=25'
+    '-XX:InitiatingHeap': 'OccupancyPercent=30' 
+    '-Dtuxedo.jolt.LLEDeprecationWarnLevel': '=NONE'
 ```
 
 ### io_weblogic::pskey
