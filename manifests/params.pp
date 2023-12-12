@@ -5,7 +5,7 @@ class io_weblogic::params {
   $cacert_passwd             = 'changeit'
   $java_home                 = undef
   $tools_version             = undef
-  $pia_domain_list           = hiera('pia_domain_list')
+  $pia_domain_list           = lookup('pia_domain_list', '', '', undef)
   $install_jce               = false
   $trustcacerts              = false
   $standard_java_trust       = false
@@ -13,9 +13,9 @@ class io_weblogic::params {
   $certificates              = undef
   $jce_path                  = undef
   $prebuilt_pskey            = undef
-  $psft_runtime_user_name    = hiera('psft_runtime_user_name', 'psadm2')
-  $psft_install_user_name    = hiera('psft_install_user_name', 'psadm1')
-  $oracle_install_group_name = hiera('oracle_install_group_name', 'oinstall')
+  $psft_runtime_user_name    = lookup('psft_runtime_user_name', '', '', 'psadm2')
+  $psft_install_user_name    = lookup('psft_install_user_name', '', '', 'psadm1')
+  $oracle_install_group_name = lookup('oracle_install_group_name', '', '', 'oinstall')
   $omc_apm_agent             = undef
   $apm_install_dir           = undef
   $apm_reg_key               = undef
